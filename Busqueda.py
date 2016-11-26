@@ -4,7 +4,7 @@ lista_simple = []
 
 def lectura():
     archivo = open("Integrantes.txt","r")
-    linea = archivo.readline()
+    linea = archivo.readlines()
     while linea != "":
         minusc = linea.lower()
         eliminar = minusc.replace("\n","")
