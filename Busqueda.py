@@ -1,7 +1,7 @@
 #funcion que reconoce el texto y los separa en elemnetos de una lista
 lista_multiple = []
 lista_simple = []
-
+guardar_resultados =[]
 def lectura():
     archivo = open("Integrantes.txt","r")
     linea = archivo.readline()
@@ -36,6 +36,32 @@ def limpieza_palabra(palabra,simbolo):
             caracter = ""
             palabra = caracter.join(limpieza_palabra)
     return palabra
+
+def busqueda(lista,palabra):
+    contador = 0
+    busqueda = False
+    for i in range(0,len(lista)):
+        if lista[i] == palabra:
+            contador = contador+1
+            busqueda = True
+    if busqueda == True:
+        print(palabra,"se repite",contador)
+        guardar_resultados.append(guardar(palabra,contador))
+    else:
+        print("No existe")
+        
+def guardar (palabra,cantidad):
+    lista = []
+    lista.append(palabra)
+    lista.append(cantidad)
+    return lista
+           
+def grabar(lista):
+    archivo = open("resultado.txt","w")
+    archivo.close()
+    archivo = open("resultado.txt","a")
+    archivo.writelines(lista)
+    archivo.close()
     
 lectura()  
 transformar(lista_multiple)
@@ -45,3 +71,10 @@ sin_expre = limpieza_texto(sin_puntos,"!")
 texto_limpio = limpieza_texto(sin_expre,"?")
 print(lista_multiple,"\n",lista_simple,"\n",texto_limpio)
 
+palabra = input("Busqueda: ")
+busqueda(texto_limpio,palabra)
+palabra = input("Busqueda: ")
+busqueda(texto_limpio,palabra)
+
+grabar(str(guardar_resultados))
+print(guardar_resultados)
