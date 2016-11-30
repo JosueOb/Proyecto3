@@ -1,1 +1,1 @@
-[['harry', 41], ['potter', 1], ['perro', 3], ['lo', 7], ['director', 2], ['salir', 1]]
+[['harry', 41], ['pocos', 1], ['al', 20], ['la', 32], ['un', 16], ['de', 59], ['un', 16]]

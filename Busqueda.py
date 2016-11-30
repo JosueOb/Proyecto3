@@ -43,6 +43,7 @@ def limpieza_texto(lista,simbolo):
         nuevo = limpieza_palabra(palabra,simbolo)
         limpieza_texto.append(nuevo)
     return limpieza_texto
+
 ## Funcion que retira los simbolos no deseados de una palabra ya que recibe como parametro
 ## la palabra y el simbolo a eliminar de la palabara.
 def limpieza_palabra(palabra,simbolo):
@@ -54,6 +55,7 @@ def limpieza_palabra(palabra,simbolo):
             caracter = ""
             palabra = caracter.join(limpieza_palabra)
     return palabra
+
 ## Funcion que permite la busque de la palabara en toda la lista
 def busqueda(lista,palabra):
     contador = 0
@@ -74,6 +76,7 @@ def guardar (palabra,cantidad):
     lista.append(palabra)
     lista.append(cantidad)
     return lista
+
 ## Graba la lista que contiene el historial de busqueda en un archivo.txt           
 def grabar(lista):
     archivo = open("resultado.txt","w")
@@ -81,6 +84,7 @@ def grabar(lista):
     archivo = open("resultado.txt","a")
     archivo.writelines(lista)
     archivo.close()
+    
 ## Funcion que permite que el usuario puede realizar varias busquedas y observar el scrip del
 ## historial de busqueda que haya realizado
 def main():
