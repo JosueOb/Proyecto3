@@ -1,7 +1,18 @@
-#funcion que reconoce el texto y los separa en elemnetos de una lista
+## EPN-ESFOT-ASI Programacion Avanzada
+
+## Busqueda.py
+## Versión: 2.1
+## Buscar la concurrencia de una palabara en un determinado texto
+
+## Autor: Josué Obaco y Mishel Centeno
+## Fecha: 29-Nov-2016
+
+## Listas Globales 
 lista_multiple = []
 lista_simple = []
 guardar_resultados = []
+## Funcion que permite la lectura del decumento.txt donde cada linea sea minuscula
+## se la separa donde se presente espacios y las añadimos a la lista global multiple
 def lectura():
     archivo = open("harry2.txt","r")
     linea = archivo.readline()
@@ -13,12 +24,18 @@ def lectura():
         linea = archivo.readline()
     archivo.close()
     
+## Funcion que transfroma una lista multiple a una lista simple ya que en el caso anterior
+## la funcion split separa la line en una lista pero esto se le añada a otra lista donde
+## se froma una lista multiple
 def transformar(lista):
     for i in range(0,len(lista)):
         for j in range(0,len(lista[i])):
             palabra = lista[i][j]
             lista_simple.append(palabra)
-            
+
+## Funcion que realiza la ejecucion de la funcion de limpieza de palabra donde quita los
+## signos de puntuacion y de expresion del todo el texto ya que recibe una lista que
+## que contenga todo el texto y el signo no desea a eliminar
 def limpieza_texto(lista,simbolo):
     limpieza_texto = []
     for i in range(0,len(lista)):
@@ -26,7 +43,8 @@ def limpieza_texto(lista,simbolo):
         nuevo = limpieza_palabra(palabra,simbolo)
         limpieza_texto.append(nuevo)
     return limpieza_texto
-    
+## Funcion que retira los simbolos no deseados de una palabra ya que recibe como parametro
+## la palabra y el simbolo a eliminar de la palabara.
 def limpieza_palabra(palabra,simbolo):
     limpieza_palabra = []
     for i in range(0,len(palabra)):
@@ -36,9 +54,8 @@ def limpieza_palabra(palabra,simbolo):
             caracter = ""
             palabra = caracter.join(limpieza_palabra)
     return palabra
-
+## Funcion que permite la busque de la palabara en toda la lista
 def busqueda(lista,palabra):
-    palabra = palabra.lower()
     contador = 0
     busqueda = False
     for i in range(0,len(lista)):
@@ -50,20 +67,22 @@ def busqueda(lista,palabra):
         guardar_resultados.append(guardar(palabra,contador))
     else:
         print("No existe")
-        
+
+## Funcion que guarda las busquedas realizadas en una lista      
 def guardar (palabra,cantidad):
     lista = []
     lista.append(palabra)
     lista.append(cantidad)
     return lista
-           
+## Graba la lista que contiene el historial de busqueda en un archivo.txt           
 def grabar(lista):
     archivo = open("resultado.txt","w")
     archivo.close()
     archivo = open("resultado.txt","a")
     archivo.writelines(lista)
     archivo.close()
-
+## Funcion que permite que el usuario puede realizar varias busquedas y observar el scrip del
+## historial de busqueda que haya realizado
 def main():
     lectura()  
     transformar(lista_multiple)
