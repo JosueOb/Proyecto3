@@ -1,9 +1,9 @@
 #funcion que reconoce el texto y los separa en elemnetos de una lista
 lista_multiple = []
 lista_simple = []
-guardar_resultados =[]
+guardar_resultados = []
 def lectura():
-    archivo = open("Integrantes.txt","r")
+    archivo = open("harry2.txt","r")
     linea = archivo.readline()
     while linea != "":
         minusc = linea.lower()
@@ -38,6 +38,7 @@ def limpieza_palabra(palabra,simbolo):
     return palabra
 
 def busqueda(lista,palabra):
+    palabra = palabra.lower()
     contador = 0
     busqueda = False
     for i in range(0,len(lista)):
@@ -62,19 +63,24 @@ def grabar(lista):
     archivo = open("resultado.txt","a")
     archivo.writelines(lista)
     archivo.close()
+
+def main():
+    lectura()  
+    transformar(lista_multiple)
+    sin_comas = limpieza_texto(lista_simple,",")
+    sin_puntos = limpieza_texto(sin_comas,".")
+    sin_expre = limpieza_texto(sin_puntos,"!")
+    sin_punto_coma = limpieza_texto(sin_expre,";")
+    texto_limpio = limpieza_texto(sin_punto_coma,"?")
+    print("TEXTO\n"+str(texto_limpio)+"\n\nBUSQUEDA DE PALABRAS EN UN DOCUMENTO: \nPresione ENTER para terminar")
+    palabra = input("Busqueda: ")
+    while palabra !="":
+        busqueda(texto_limpio,palabra)
+        palabra = input("Busqueda: ")
+    if len(guardar_resultados) !=0:
+        print("\nTermino! \nHistorial:"+"\n"+str(guardar_resultados)+"\nSe generó un scrip de su busqueda")
+        grabar(str(guardar_resultados))
+    else:
+        print("No realizó ninguna busqueda!")
     
-lectura()  
-transformar(lista_multiple)
-sin_comas = limpieza_texto(lista_simple,",")
-sin_puntos = limpieza_texto(sin_comas,".")
-sin_expre = limpieza_texto(sin_puntos,"!")
-texto_limpio = limpieza_texto(sin_expre,"?")
-print(lista_multiple,"\n",lista_simple,"\n",texto_limpio)
-
-palabra = input("Busqueda: ")
-busqueda(texto_limpio,palabra)
-palabra = input("Busqueda: ")
-busqueda(texto_limpio,palabra)
-
-grabar(str(guardar_resultados))
-print(guardar_resultados)
+main()
